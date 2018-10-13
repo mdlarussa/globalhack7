@@ -27,9 +27,16 @@ public abstract class User {
     private long id;
 
     private String name;
+    private String gender;
+    private String age;
+    private String occupation;
+    private String language;
+    private String phone;
     private String email;
+    private String city;
+
     @ManyToMany(cascade = CascadeType.ALL)
-    @JoinTable(name = "book_author",
+    @JoinTable(name = "user_need",
             joinColumns = @JoinColumn(name = "need_id", referencedColumnName = "id"),
             inverseJoinColumns = @JoinColumn(name = "user_id",
                     referencedColumnName = "id"))
