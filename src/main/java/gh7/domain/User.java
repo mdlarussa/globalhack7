@@ -1,5 +1,7 @@
 package gh7.domain;
 
+import lombok.Data;
+
 import javax.persistence.CascadeType;
 import javax.persistence.DiscriminatorColumn;
 import javax.persistence.Entity;
@@ -12,8 +14,10 @@ import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.MappedSuperclass;
+import java.util.ArrayList;
 import java.util.List;
 
+@Data
 @Entity
 @DiscriminatorColumn(name="Type")
 @Inheritance(strategy = InheritanceType.SINGLE_TABLE)
@@ -21,14 +25,6 @@ public abstract class User {
     @GeneratedValue(strategy = GenerationType.AUTO)
     @Id
     private long id;
-
-    public long getId() {
-        return id;
-    }
-
-    public void setId(long id) {
-        this.id = id;
-    }
 
     private String name;
     private String email;
@@ -38,27 +34,19 @@ public abstract class User {
             inverseJoinColumns = @JoinColumn(name = "user_id",
                     referencedColumnName = "id"))
     private List<Need> needs;
-    public String getName() {
-        return name;
+
+    public User() {
     }
 
-    public void setName(String name) {
+    public User(String name, String email) {
         this.name = name;
-    }
-
-    public String getEmail() {
-        return email;
-    }
-
-    public void setEmail(String email) {
         this.email = email;
     }
 
-    public List<Need> getNeeds() {
-        return needs;
-    }
-
-    public void setNeeds(List<Need> needs) {
-        this.needs = needs;
+    public void addNeed(Need need) {
+        if (this.needs == null) {
+            this.needs = new ArrayList<>();
+        }
+        this.needs.add(need);
     }
 }
