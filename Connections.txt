@@ -1,6 +1,9 @@
 Tomcat:
 http://ec2-13-58-184-224.us-east-2.compute.amazonaws.com:8080/
 http://ec2-13-58-184-224.us-east-2.compute.amazonaws.com:8080/manager/html
+
+ehi-gh7.ddns.net
+
 admin:adminadmin
 
 ssh: ec2-13-58-184-224.us-east-2.compute.amazonaws.com
